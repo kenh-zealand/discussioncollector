@@ -347,7 +347,7 @@ a.knap{text-decoration:none;display:inline-block}
 		const a = d.analyse;
 		if (a) {
 			$('analyse').innerHTML = a.html;
-			$('tip').textContent = a.prompt || 'Ingen prompt angivet.';
+			$('tip').textContent = (a.prompt || 'Ingen prompt angivet.') + (a.model ? '\n\nModel: ' + a.model : '');
 			$('opdateret').textContent = 'Opdateret ' + tid(a.opdateret);
 		}
 		const nye = $('nye');
@@ -468,7 +468,7 @@ a.knap{text-decoration:none;display:inline-block}
 	$('pdf').addEventListener('click', () => {
 		const a = data && data.analyse;
 		if (!a) { $('opdater-status').textContent = 'Der er ingen opsamling at eksportere endnu.'; return; }
-		$('print-meta').textContent = 'Opdateret ' + tid(a.opdateret) + ' · ' + data.indlaeg.length + ' indlæg · AI-genereret med prompten: ' + (a.prompt || '–');
+		$('print-meta').textContent = 'Opdateret ' + tid(a.opdateret) + ' · ' + data.indlaeg.length + ' indlæg · AI-genereret' + (a.model ? ' med ' + a.model : '') + ' ud fra prompten: ' + (a.prompt || '–');
 		const titel = document.title;
 		document.title = 'Opsamling ' + new Date(a.opdateret).toLocaleDateString('da-DK'); // bliver filnavnet
 		window.print();

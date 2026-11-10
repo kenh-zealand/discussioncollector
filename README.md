@@ -4,7 +4,7 @@ Dette er en opsamler af indlæg med tematisering via AI (tilføj egen API).
 
 En lille, selvstændig WordPress-side inspireret af Howspace' opsamlingsblok: deltagere skriver korte indlæg, og underviseren får Claude (Anthropic) til at samle dem i temaer ud fra en prompt. Siden har også en ordsky og kan eksportere opsamlingen som PDF.
 
-**Version:** 1.2 – se [CHANGELOG.md](CHANGELOG.md).
+**Version:** 1.3 – se [CHANGELOG.md](CHANGELOG.md).
 
 ## Funktioner
 

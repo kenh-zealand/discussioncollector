@@ -2,6 +2,11 @@
 
 Alle væsentlige ændringer i Discussion Collector.
 
+## [1.3] – 2026-11-10
+
+### Tilføjet
+- Modelnavnet gemmes ved hver opsamling og vises i "i"-boksen under prompten og i PDF-eksporten.
+
 ## [1.2] – 2026-11-10
 
 ### Ændret

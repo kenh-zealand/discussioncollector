@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Deltagerkoden sættes under Indstillinger → Opsamling,
 // eller i wp-config.php med: define( 'DCOL_KODE', 'din-kode' );
 const DCOL_COOKIE  = 'dcol_adgang';
-const DCOL_VERSION = '1.2';
+const DCOL_VERSION = '1.3';
 
 /* Deltagerkoden: DCOL_KODE (fx i wp-config.php) går forud; ellers Indstillinger → Opsamling. */
 function dcol_kode() {
@@ -297,9 +297,12 @@ function dcol_anmod() {
 	);
 	if ( $a ) {
 		$post['ID'] = $a->ID;
-		wp_update_post( $post );
+		$analyse_id = wp_update_post( $post );
 	} else {
-		wp_insert_post( $post );
+		$analyse_id = wp_insert_post( $post );
+	}
+	if ( $analyse_id && ! is_wp_error( $analyse_id ) ) {
+		update_post_meta( $analyse_id, 'dcol_model', dcol_model() ); // Hvilken model lavede opsamlingen.
 	}
 	update_option( 'dcol_anmodet', 0, false );
 	return array( 'ok' => true );
@@ -412,6 +415,7 @@ function dcol_feed() {
 		'analyse' => $a ? array(
 			'html'      => wp_kses_post( $a->post_content ),
 			'prompt'    => $a->post_excerpt,
+			'model'     => (string) get_post_meta( $a->ID, 'dcol_model', true ),
 			'opdateret' => gmdate( 'c', $siden ),
 		) : null,
 	) );

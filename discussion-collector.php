@@ -3,7 +3,7 @@
  * Plugin Name:       Discussion Collector
  * Plugin URI:        https://github.com/kenh-zealand/discussioncollector
  * Description:       Kodebeskyttet opsamlingsside (/opsamling/), hvor deltagere skriver indlæg, og Claude (Anthropic) samler dem i temaer. Med ordsky og PDF-eksport.
- * Version:           1.2
+ * Version:           1.3
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Kenneth Hansen
