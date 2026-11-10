@@ -10,16 +10,16 @@ nocache_headers();
 if ( ! defined( 'DONOTCACHEPAGE' ) ) {
 	define( 'DONOTCACHEPAGE', true ); // Siden ser forskellig ud for admin og deltagere.
 }
-$keha_admin      = function_exists( 'keha_ops_er_admin' ) && keha_ops_er_admin();
-$keha_side       = get_queried_object();
-$keha_logget_ind = function_exists( 'keha_ops_er_logget_ind' ) && keha_ops_er_logget_ind();
+$dcol_admin      = function_exists( 'dcol_er_admin' ) && dcol_er_admin();
+$dcol_side       = get_queried_object();
+$dcol_logget_ind = function_exists( 'dcol_er_logget_ind' ) && dcol_er_logget_ind();
 ?><!doctype html>
 <html lang="da">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title><?php echo esc_html( get_the_title( $keha_side ) ); ?> · keha.dk</title>
+<title><?php echo esc_html( get_the_title( $dcol_side ) ); ?> · <?php echo esc_html( get_bloginfo( 'name' ) ); ?></title>
 <style>
 :root{--lilla:#6a4fd6;--lilla-lys:#b9a8f0;--lilla-bg:#f4f1ff;--tekst:#1b1b1f;--graa:#5d5d68;--kant:#e4e2ec;--bg:#fafafc}
 *{box-sizing:border-box}
@@ -102,15 +102,15 @@ a.knap{text-decoration:none;display:inline-block}
 </style>
 </head>
 <body>
-<?php if ( ! $keha_logget_ind ) : ?>
+<?php if ( ! $dcol_logget_ind ) : ?>
 <main class="login">
 	<div class="kort">
-		<h1><?php echo esc_html( get_the_title( $keha_side ) ); ?></h1>
+		<h1><?php echo esc_html( get_the_title( $dcol_side ) ); ?></h1>
 		<p class="intro">Skriv koden, du har fået af underviseren.</p>
 		<form method="post">
 			<label for="kode">Kode</label>
-			<input type="password" id="kode" name="keha_ops_kode" autocomplete="off" required autofocus>
-			<?php if ( ! empty( $GLOBALS['keha_ops_fejl'] ) ) : ?>
+			<input type="password" id="kode" name="dcol_kode" autocomplete="off" required autofocus>
+			<?php if ( ! empty( $GLOBALS['dcol_fejl'] ) ) : ?>
 				<p class="fejl" role="alert">Forkert kode – prøv igen.</p>
 			<?php endif; ?>
 			<div style="margin-top:1rem">
@@ -125,16 +125,16 @@ a.knap{text-decoration:none;display:inline-block}
 <script>
 (() => {
 	const f = document.getElementById('login-navn');
-	try { const n = localStorage.getItem('keha_ops_navn'); if (n) f.value = n; } catch (e) {}
+	try { const n = localStorage.getItem('dcol_navn'); if (n) f.value = n; } catch (e) {}
 	f.closest('form').addEventListener('submit', () => {
-		try { localStorage.setItem('keha_ops_navn', f.value.trim()); } catch (e) {}
+		try { localStorage.setItem('dcol_navn', f.value.trim()); } catch (e) {}
 	});
 })();
 </script>
 <?php else : ?>
 <main class="wrap">
-	<h1><?php echo esc_html( get_the_title( $keha_side ) ); ?></h1>
-	<div class="intro"><?php echo wpautop( wp_kses_post( $keha_side->post_content ) ); ?></div>
+	<h1><?php echo esc_html( get_the_title( $dcol_side ) ); ?></h1>
+	<div class="intro"><?php echo wpautop( wp_kses_post( $dcol_side->post_content ) ); ?></div>
 
 	<section class="kort" aria-labelledby="skriv-h">
 		<h2 id="skriv-h">Skriv dit bidrag</h2>
@@ -179,18 +179,18 @@ a.knap{text-decoration:none;display:inline-block}
 			<div class="status" id="nulstil-status" role="status" aria-live="polite"></div>
 		</div>
 	</details>
-	<?php $keha_underviser_html = ob_get_clean(); if ( $keha_admin ) { echo $keha_underviser_html; } ?>
+	<?php $dcol_underviser_html = ob_get_clean(); if ( $dcol_admin ) { echo $dcol_underviser_html; } ?>
 
 	<section class="kort" id="opsamling-sektion" aria-labelledby="analyse-h">
 		<div class="kun-print">
-			<h1><?php echo esc_html( get_the_title( $keha_side ) ); ?> – opsamling</h1>
+			<h1><?php echo esc_html( get_the_title( $dcol_side ) ); ?> – opsamling</h1>
 			<div id="print-meta"></div>
 		</div>
 		<div class="analyse-hoved">
 			<h2 id="analyse-h">Opsamling</h2>
 			<button type="button" class="nye" id="nye" hidden></button>
 		</div>
-		<div class="analyse" id="analyse"><p class="tom"><?php echo $keha_admin ? 'Der er endnu ingen opsamling. Tryk "Opdater" for at lave den.' : 'Der er endnu ingen opsamling.'; ?></p></div>
+		<div class="analyse" id="analyse"><p class="tom"><?php echo $dcol_admin ? 'Der er endnu ingen opsamling. Tryk "Opdater" for at lave den.' : 'Der er endnu ingen opsamling.'; ?></p></div>
 		<div class="analyse-fod">
 			<span class="info">AI-genereret analyse
 				<button type="button" aria-label="Vis prompten bag analysen">i</button>
@@ -199,7 +199,7 @@ a.knap{text-decoration:none;display:inline-block}
 			<span class="hoejre">
 				<span id="opdateret"></span>
 				<button type="button" class="knap sekundaer" id="pdf" title="Åbner udskriftsvinduet – vælg 'Gem som PDF'">⤓ Eksportér PDF</button>
-				<?php if ( $keha_admin ) : ?><button type="button" class="knap sekundaer" id="opdater">↻ Opdater</button><?php endif; ?>
+				<?php if ( $dcol_admin ) : ?><button type="button" class="knap sekundaer" id="opdater">↻ Opdater</button><?php endif; ?>
 			</span>
 		</div>
 		<div class="status" id="opdater-status" role="status" aria-live="polite"></div>
@@ -217,16 +217,16 @@ a.knap{text-decoration:none;display:inline-block}
 		<ul class="liste" id="liste"></ul>
 		<div class="sky" id="sky" hidden aria-label="Ordsky over alle indlæg"></div>
 	</section>
-	<p class="version">Discussion Collector v<?php echo esc_html( defined( 'KEHA_OPS_VERSION' ) ? KEHA_OPS_VERSION : '' ); ?></p>
+	<p class="version">Discussion Collector v<?php echo esc_html( defined( 'DCOL_VERSION' ) ? DCOL_VERSION : '' ); ?></p>
 </main>
 
 <script>
 (() => {
-	const API = <?php echo wp_json_encode( esc_url_raw( rest_url( 'keha-opsamling/v1/' ) ) ); ?>;
+	const API = <?php echo wp_json_encode( esc_url_raw( rest_url( 'discussion-collector/v1/' ) ) ); ?>;
 	const $ = (id) => document.getElementById(id);
-	const ADMIN = <?php echo $keha_admin ? 'true' : 'false'; ?>;
+	const ADMIN = <?php echo $dcol_admin ? 'true' : 'false'; ?>;
 	// WordPress kræver en nonce, før REST-kald kører som den indloggede admin.
-	const HOVED = ADMIN ? { 'X-WP-Nonce': <?php echo wp_json_encode( $keha_admin ? wp_create_nonce( 'wp_rest' ) : '' ); ?> } : {};
+	const HOVED = ADMIN ? { 'X-WP-Nonce': <?php echo wp_json_encode( $dcol_admin ? wp_create_nonce( 'wp_rest' ) : '' ); ?> } : {};
 	const STOP = new Set(('og i jeg det at en den til er som på de med han af for ikke der var mig sig men et har om vi min havde ham hun nu over da fra du ud sin dem os op man hans hvor eller hvad skal selv her alle vil blev kunne ind når være dog noget ville jo deres efter ned skulle denne end dette mit også under have dig anden hende mine alt meget sit sine vor mod disse hvis din nogle hos blive mange ad bliver hendes været thi jer sådan kan få så ser bare godt mere mest hvordan hvorfor fordi nok kun ved via samt lige vores sig mm fx bl.a evt osv lidt helt rigtig hele andre anden andet ingen nogen noget hvilke hvilket hvem hvornår gør gøre giver give kommer komme kunne måske altid aldrig nye ny godt gode god får fået vores jeres man mere mindre samme også både enten ellers sammen igen allerede stadig blot bare være været er var').split(' '));
 	let sidsteIds = new Set();
 	let forste = true;
@@ -477,8 +477,8 @@ a.knap{text-decoration:none;display:inline-block}
 
 	$('nye').addEventListener('click', () => $('indlaeg-sektion').scrollIntoView({ behavior: 'smooth' }));
 
-	try { const n = localStorage.getItem('keha_ops_navn'); if (n) $('navn').value = n; } catch (e) {}
-	$('navn').addEventListener('change', () => { try { localStorage.setItem('keha_ops_navn', $('navn').value); } catch (e) {} });
+	try { const n = localStorage.getItem('dcol_navn'); if (n) $('navn').value = n; } catch (e) {}
+	$('navn').addEventListener('change', () => { try { localStorage.setItem('dcol_navn', $('navn').value); } catch (e) {} });
 
 	hent();
 	setInterval(() => { if (!document.hidden) hent(); }, 5000);

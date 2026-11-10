@@ -2,6 +2,13 @@
 
 Alle væsentlige ændringer i Discussion Collector.
 
+## [1.2] – 2026-11-10
+
+### Ændret
+- Alle interne navne bruger nu præfikset `dcol_` (Discussion Collector) i stedet for det oprindelige sitenavn: funktioner, indstillinger, indholdstyperne `dcol_indlaeg` og `dcol_opsamling`, REST-adressen `discussion-collector/v1` og indstillingssiden.
+- Konstanterne til `wp-config.php` hedder nu `DCOL_KODE` og `DCOL_ANTHROPIC_KEY`.
+- Sidens fanetitel viser hjemmesidens eget navn.
+
 ## [1.1] – 2026-11-10
 
 ### Ændret

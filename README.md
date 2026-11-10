@@ -4,7 +4,7 @@ Dette er en opsamler af indlæg med tematisering via AI (tilføj egen API).
 
 En lille, selvstændig WordPress-side inspireret af Howspace' opsamlingsblok: deltagere skriver korte indlæg, og underviseren får Claude (Anthropic) til at samle dem i temaer ud fra en prompt. Siden har også en ordsky og kan eksportere opsamlingen som PDF.
 
-**Version:** 1.1 – se [CHANGELOG.md](CHANGELOG.md).
+**Version:** 1.2 – se [CHANGELOG.md](CHANGELOG.md).
 
 ## Funktioner
 
@@ -29,8 +29,8 @@ En lille, selvstændig WordPress-side inspireret af Howspace' opsamlingsblok: de
 Kode og nøgle kan i stedet sættes i `wp-config.php`, så de ikke ligger i databasen:
 
 ```php
-define( 'KEHA_OPS_KODE', 'din-kode' );
-define( 'KEHA_OPS_ANTHROPIC_KEY', 'sk-ant-...' );
+define( 'DCOL_KODE', 'din-kode' );
+define( 'DCOL_ANTHROPIC_KEY', 'sk-ant-...' );
 ```
 
 Læg aldrig din API-nøgle eller deltagerkode i dette repository.
@@ -45,7 +45,7 @@ Administratorer logger ind med deres almindelige WordPress-konto – der er inge
 
 ## Data
 
-- Indlæg gemmes som private indlæg af typen `keha_indlaeg`, analysen som `keha_opsamling`. Begge kan ses i WordPress-admin.
+- Indlæg gemmes som private indlæg af typen `dcol_indlaeg`, analysen som `dcol_opsamling`. Begge kan ses i WordPress-admin.
 - "Nulstil" lægger indlæg og analyse i papirkurven, så de kan gendannes.
 - Siden caches ikke (`DONOTCACHEPAGE`), fordi den ser forskellig ud for administrator og deltagere.
 

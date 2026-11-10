@@ -3,7 +3,7 @@
  * Plugin Name:       Discussion Collector
  * Plugin URI:        https://github.com/kenh-zealand/discussioncollector
  * Description:       Kodebeskyttet opsamlingsside (/opsamling/), hvor deltagere skriver indlæg, og Claude (Anthropic) samler dem i temaer. Med ordsky og PDF-eksport.
- * Version:           1.1
+ * Version:           1.2
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Kenneth Hansen
@@ -17,14 +17,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Hvis opsamlingen allerede er indlæst andetsteds (fx fra et tema), stopper pluginet for at undgå dobbelt kode.
-if ( function_exists( 'keha_ops_kode' ) ) {
+if ( function_exists( 'dcol_kode' ) ) {
 	add_action( 'admin_notices', function () {
-		echo '<div class="notice notice-warning"><p><strong>Discussion Collector:</strong> Opsamlingen er allerede indlæst fra dit tema. Fjern den fra temaet for at bruge pluginet.</p></div>';
+		echo '<div class="notice notice-warning"><p><strong>Discussion Collector:</strong> Opsamlingen er allerede indlæst et andet sted (fx fra en anden kopi af pluginet eller fra temaet). Fjern den ene for at undgå dobbelt kode.</p></div>';
 	} );
 	return;
 }
 
-define( 'KEHA_OPS_PLUGIN_FIL', __FILE__ );
+define( 'DCOL_PLUGIN_FIL', __FILE__ );
 
 require_once __DIR__ . '/inc/opsamling.php';
 
@@ -52,6 +52,6 @@ register_activation_hook( __FILE__, function () {
 
 /* Genvej til indstillingerne fra plugin-listen. */
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), function ( $links ) {
-	array_unshift( $links, '<a href="' . esc_url( admin_url( 'options-general.php?page=keha-opsamling' ) ) . '">Indstillinger</a>' );
+	array_unshift( $links, '<a href="' . esc_url( admin_url( 'options-general.php?page=discussion-collector' ) ) . '">Indstillinger</a>' );
 	return $links;
 } );
