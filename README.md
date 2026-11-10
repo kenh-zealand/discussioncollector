@@ -4,7 +4,7 @@ Dette er en opsamler af indlæg med tematisering via AI (tilføj egen API).
 
 En lille, selvstændig WordPress-side inspireret af Howspace' opsamlingsblok: deltagere skriver korte indlæg, og underviseren får Claude (Anthropic) til at samle dem i temaer ud fra en prompt. Siden har også en ordsky og kan eksportere opsamlingen som PDF.
 
-**Version:** 1.0 – se [CHANGELOG.md](CHANGELOG.md).
+**Version:** 1.1 – se [CHANGELOG.md](CHANGELOG.md).
 
 ## Funktioner
 
@@ -18,15 +18,10 @@ En lille, selvstændig WordPress-side inspireret af Howspace' opsamlingsblok: de
 
 ## Installation
 
-Filerne er lavet til at ligge i et (child-)tema.
-
-1. Kopiér `page-opsamling.php` og mappen `inc/` ind i dit tema.
-2. Tilføj denne linje i temaets `functions.php`:
-   ```php
-   require_once get_stylesheet_directory() . '/inc/opsamling.php';
-   ```
-3. Opret en WordPress-side med adressen (slug) `opsamling`. Sidens tekst vises som introduktion.
-4. Gå til **Indstillinger → Opsamling** og udfyld:
+1. Klik på den grønne knap **Code → Download ZIP** her på GitHub.
+2. Gå i WordPress til **Plugins → Tilføj nyt plugin → Upload plugin**, vælg ZIP-filen, og tryk **Installer nu** og derefter **Aktivér**.
+3. Ved aktivering oprettes siden **/opsamling/** automatisk (hvis den ikke findes i forvejen). Sidens tekst vises som introduktion og kan redigeres som en almindelig side.
+4. Gå til **Indstillinger → Opsamling** (eller klik "Indstillinger" ved pluginet) og udfyld:
    - **Anthropic API-nøgle** – oprettes på [console.anthropic.com](https://console.anthropic.com) (kræver betaling dér).
    - **Model** – fx `claude-haiku-5-5` (hurtig og billig) eller `claude-sonnet-5-5` (standard).
    - **Deltagerkode** – den kode, deltagerne skal skrive (små bogstaver).
@@ -39,6 +34,14 @@ define( 'KEHA_OPS_ANTHROPIC_KEY', 'sk-ant-...' );
 ```
 
 Læg aldrig din API-nøgle eller deltagerkode i dette repository.
+
+Administratorer logger ind med deres almindelige WordPress-konto – der er ingen særskilt admin-kode.
+
+## Filer
+
+- `discussion-collector.php` – pluginets hovedfil.
+- `inc/opsamling.php` – logik: indholdstyper, adgang, REST-endepunkter, kald til Claude og indstillinger.
+- `templates/page-opsamling.php` – selve siden /opsamling/ (HTML, CSS og JavaScript).
 
 ## Data
 

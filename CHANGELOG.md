@@ -2,6 +2,17 @@
 
 Alle væsentlige ændringer i Discussion Collector.
 
+## [1.1] – 2026-11-10
+
+### Ændret
+- Pakket som et rigtigt WordPress-plugin: upload ZIP-filen under Plugins og aktivér. Det er ikke længere nødvendigt at kopiere filer ind i temaet.
+- Sideskabelonen ligger nu i `templates/page-opsamling.php` og bruges uanset tema.
+
+### Tilføjet
+- Siden `/opsamling/` oprettes automatisk ved aktivering, hvis den ikke findes.
+- Link til "Indstillinger" direkte i plugin-listen.
+- Advarsel, hvis opsamlingen allerede er indlæst fra et tema, så koden ikke kører dobbelt.
+
 ## [1.0] – 2026-11-10
 
 Første offentlige version.

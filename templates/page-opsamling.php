@@ -1,7 +1,7 @@
 <?php
 /**
  * Selvstændig opsamlingsside (/opsamling/) – uden sidens almindelige tema.
- * Logikken ligger i inc/opsamling.php.
+ * Logikken ligger i inc/opsamling.php. Vises af pluginet for siden med adressen /opsamling/.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

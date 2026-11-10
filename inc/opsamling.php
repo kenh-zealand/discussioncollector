@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Deltagerkoden sættes under Indstillinger → Opsamling,
 // eller i wp-config.php med: define( 'KEHA_OPS_KODE', 'din-kode' );
 const KEHA_OPS_COOKIE  = 'keha_opsamling';
-const KEHA_OPS_VERSION = '1.0';
+const KEHA_OPS_VERSION = '1.1';
 
 /* Deltagerkoden: KEHA_OPS_KODE (fx i wp-config.php) går forud; ellers Indstillinger → Opsamling. */
 function keha_ops_kode() {
