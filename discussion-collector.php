@@ -6,7 +6,7 @@
  * Version:           1.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
- * Author:            Kenneth
+ * Author:            Kenneth Hansen
  * Text Domain:       discussion-collector
  * License:           MIT
  * License URI:       https://opensource.org/licenses/MIT
