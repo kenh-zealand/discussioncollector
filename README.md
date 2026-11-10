@@ -48,3 +48,7 @@ Administratorer logger ind med deres almindelige WordPress-konto – der er inge
 - Indlæg gemmes som private indlæg af typen `keha_indlaeg`, analysen som `keha_opsamling`. Begge kan ses i WordPress-admin.
 - "Nulstil" lægger indlæg og analyse i papirkurven, så de kan gendannes.
 - Siden caches ikke (`DONOTCACHEPAGE`), fordi den ser forskellig ud for administrator og deltagere.
+
+## Licens
+
+MIT – du må frit bruge, ændre og dele koden, også kommercielt, så længe copyright-linjen og licensteksten følger med. Se [LICENSE](LICENSE). Koden leveres som den er, uden garanti.

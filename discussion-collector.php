@@ -8,6 +8,8 @@
  * Requires PHP:      7.4
  * Author:            Kenneth
  * Text Domain:       discussion-collector
+ * License:           MIT
+ * License URI:       https://opensource.org/licenses/MIT
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -12,6 +12,7 @@ Alle væsentlige ændringer i Discussion Collector.
 - Siden `/opsamling/` oprettes automatisk ved aktivering, hvis den ikke findes.
 - Link til "Indstillinger" direkte i plugin-listen.
 - Advarsel, hvis opsamlingen allerede er indlæst fra et tema, så koden ikke kører dobbelt.
+- MIT-licens (LICENSE), så alle frit må bruge, ændre og dele pluginet.
 
 ## [1.0] – 2026-11-10
 
