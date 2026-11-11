@@ -2,6 +2,11 @@
 
 Alle væsentlige ændringer i Discussion Collector.
 
+## [1.4] – 2026-11-11
+
+### Tilføjet
+- Knappen "⤓ Eksportér PDF" ved alle indlæg: eksporterer det, man ser – listen med alle indlæg foldet helt ud eller ordskyen.
+
 ## [1.3] – 2026-11-10
 
 ### Tilføjet

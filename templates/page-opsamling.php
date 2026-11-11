@@ -90,7 +90,12 @@ a.knap{text-decoration:none;display:inline-block}
 @media print{
 	body{background:#fff}
 	.wrap{padding:0;max-width:none}
-	.wrap>*:not(#opsamling-sektion){display:none!important}
+	body:not(.print-indlaeg) .wrap>*:not(#opsamling-sektion){display:none!important}
+	body.print-indlaeg .wrap>*:not(#indlaeg-sektion){display:none!important}
+	body.print-indlaeg #indlaeg-sektion{border:0;padding:0;margin:0}
+	body.print-indlaeg .fanebar,body.print-indlaeg .vis-mere{display:none!important}
+	body.print-indlaeg .tekst.klip{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
+	.liste li{break-inside:avoid}
 	#opsamling-sektion{border:0;padding:0;margin:0}
 	.analyse-fod,.nye,#opdater-status{display:none!important}
 	.analyse{border-left:0;padding-left:0;opacity:1!important}
@@ -213,6 +218,11 @@ a.knap{text-decoration:none;display:inline-block}
 			<button type="button" class="fane" role="tab" aria-selected="true" data-vis="liste">Liste</button>
 			<button type="button" class="fane" role="tab" aria-selected="false" data-vis="sky">Ordsky</button>
 			<button type="button" class="toggle" id="vis-tal" aria-pressed="false">Vis tal i ordsky</button>
+			<button type="button" class="toggle" id="eksport-indlaeg" title="Eksporterer det, du ser (liste eller ordsky). Vælg 'Gem som PDF'.">⤓ Eksportér PDF</button>
+		</div>
+		<div class="kun-print">
+			<h1><?php echo esc_html( get_the_title( $dcol_side ) ); ?> – indlæg</h1>
+			<div id="print-meta-indlaeg"></div>
 		</div>
 		<ul class="liste" id="liste"></ul>
 		<div class="sky" id="sky" hidden aria-label="Ordsky over alle indlæg"></div>
@@ -472,6 +482,18 @@ a.knap{text-decoration:none;display:inline-block}
 		const titel = document.title;
 		document.title = 'Opsamling ' + new Date(a.opdateret).toLocaleDateString('da-DK'); // bliver filnavnet
 		window.print();
+		document.title = titel;
+	});
+
+	$('eksport-indlaeg').addEventListener('click', () => {
+		const sky = !$('sky').hidden;
+		const antal = data ? data.indlaeg.length : 0;
+		$('print-meta-indlaeg').textContent = (sky ? 'Ordsky over ' : 'Alle ') + antal + ' indlæg · eksporteret ' + tid(new Date().toISOString());
+		const titel = document.title;
+		document.title = (sky ? 'Ordsky ' : 'Indlæg ') + new Date().toLocaleDateString('da-DK'); // bliver filnavnet
+		document.body.classList.add('print-indlaeg');
+		window.print();
+		document.body.classList.remove('print-indlaeg');
 		document.title = titel;
 	});
 

@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Deltagerkoden sættes under Indstillinger → Opsamling,
 // eller i wp-config.php med: define( 'DCOL_KODE', 'din-kode' );
 const DCOL_COOKIE  = 'dcol_adgang';
-const DCOL_VERSION = '1.3';
+const DCOL_VERSION = '1.4';
 
 /* Deltagerkoden: DCOL_KODE (fx i wp-config.php) går forud; ellers Indstillinger → Opsamling. */
 function dcol_kode() {
